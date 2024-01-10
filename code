@@ -1,0 +1,122 @@
+// contact.java //
+
+public class Contact {
+    private String name;
+    private String phoneNumber;
+    private String email;
+
+    // Constructor, getters, setters
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    // Other methods if needed
+}
+
+// ContactList.java //
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ContactList {
+    private List<Contact> contacts;
+
+    public ContactList() {
+        contacts = new ArrayList<>();
+    }
+
+    public void addContact(Contact contact) {
+        contacts.add(contact);
+    }
+
+    public void viewContacts() {
+        if (contacts.isEmpty()) {
+        System.out.println("No contacts found.");
+    } else {
+        System.out.println("List of Contacts:");
+        for (Contact contact : contacts) {
+            System.out.println("Name: " + contact.getName());
+            System.out.println("Phone Number: " + contact.getPhoneNumber());
+            System.out.println("Email: " + contact.getEmail());
+            // Display other contact details as needed
+            System.out.println("--------------------");
+        }
+    }
+    }
+}
+
+// main.java //
+import java.util.Scanner;
+
+public class main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ContactList contactList = new ContactList();
+
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("Select an option:");
+            System.out.println("1. Add a contact");
+            System.out.println("2. View contacts");
+            System.out.println("3. Exit");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+
+            switch (choice) {
+				case 1:
+    // Add a contact
+    System.out.println("Enter contact name:");
+    String name = scanner.nextLine();
+    
+    System.out.println("Enter contact phone number:");
+    String phoneNumber = scanner.nextLine();
+    
+    System.out.println("Enter contact email:");
+    String email = scanner.nextLine();
+    
+    // Create a new Contact object
+    Contact newContact = new Contact();
+    newContact.setName(name);
+    newContact.setPhoneNumber(phoneNumber);
+    newContact.setEmail(email);
+    
+    // Add the new contact to the contact list
+    contactList.addContact(newContact);
+    System.out.println("Contact added successfully!");
+    break;
+
+                case 2:
+                       // View contacts
+                       contactList.viewContacts();
+                       break;
+                case 3:
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        }
+        scanner.close();
+    }
+}
